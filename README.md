@@ -1,5 +1,7 @@
 # Beyond VRAM Capacity: A Single-Workstation Case Study of Strata, Qwen3.8-Flash-Next, and OpenCode on an RTX 5080
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23945369.svg)](https://doi.org/10.5281/zenodo.23945369)
+
 **OCF V1 (OpenCode FlashNext)** — Orchestrated local coding with Strata, Qwen3.8-Flash-Next, and OpenCode on a 16 GB RTX 5080
 
 **Author:** Arun C Michael  
@@ -54,7 +56,7 @@ A formatted PDF build is published at [`release/Beyond-VRAM-Capacity-OCF-V1-Tech
 ```text
 .
 ├── README.md                        # Executive overview and quick-start orientation
-├── CITATION.cff / CITATION.bib      # Citation metadata (DOI TODO until Zenodo mints)
+├── CITATION.cff / CITATION.bib      # Citation metadata (Zenodo DOI)
 ├── .zenodo.json                     # Zenodo GitHub-release archival metadata
 ├── paper/
 │   └── case-study.md                # Full technical paper by Arun C Michael
@@ -93,8 +95,7 @@ If you use the **OCF V1** orchestration architecture, compaction budgeting metho
   month       = {November},
   note        = {Verified workstation implementation of OCF V1 (OpenCode FlashNext) on NVIDIA RTX 5080 16 GB},
   url         = {https://github.com/aruncmichael-alt/ocf-v1-beyond-vram},
-  % TODO(DOI): Replace with real Zenodo DOI after minting — do not invent a DOI.
-  % doi       = {10.5281/zenodo.XXXXXXXX}
+  doi         = {10.5281/zenodo.23945369}
 }
 ```
 
