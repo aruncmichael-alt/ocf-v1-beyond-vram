@@ -1,0 +1,60 @@
+{
+  "title": "Beyond VRAM Capacity: A Single-Workstation Case Study of Strata, Qwen3.8-Flash-Next, and OpenCode on an RTX 5080",
+  "version": "1.0.0",
+  "upload_type": "publication",
+  "publication_type": "technicalnote",
+  "description": "<p>Verified single-workstation systems case study of <strong>OCF V1 (OpenCode FlashNext)</strong> by Arun C Michael. Documents hybrid memory placement, client compaction control, and single-slot FIFO orchestration that runs an 83.62&nbsp;GB on-disk <code>IQ3_S</code> sparse coding model (<code>ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF</code>) on an NVIDIA RTX&nbsp;5080 (16&nbsp;GB) with Strata and OpenCode.</p><p>Key verified findings include: direct-NVMe PLE placement saving ~26.8&nbsp;GiB host RAM; wire-verified non-reasoning compaction reducing paired-fixture latency from 69.282&nbsp;s to 18.360&nbsp;s (−73.5%); MTP draft acceptance ~73.49%; and deterministic 600&nbsp;s idle unload with ~30.515&nbsp;s cold wake. Includes sanitized configs, scripts, claims ledger, and the PDF whitepaper asset from GitHub release v1.0.0.</p><p><strong>Do not redistribute GGUF weights from this archive</strong>—fetch and verify shards from the upstream Hugging Face repository.</p>",
+  "creators": [
+    {
+      "name": "Michael, Arun C",
+      "affiliation": "Independent Systems Engineering Case Study"
+    }
+  ],
+  "keywords": [
+    "local LLM",
+    "GPU memory hierarchy",
+    "OpenCode",
+    "Strata",
+    "Qwen3.8-Flash-Next",
+    "OCF V1",
+    "systems engineering",
+    "RTX 5080",
+    "technical whitepaper"
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/releases/tag/v1.0.0",
+      "relation": "isIdenticalTo",
+      "resource_type": "publication-technicalnote"
+    },
+    {
+      "identifier": "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/releases/download/v1.0.0/Beyond-VRAM-Capacity-OCF-V1-Technical-Whitepaper.pdf",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-technicalnote"
+    },
+    {
+      "identifier": "https://huggingface.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "relation": "references",
+      "resource_type": "other"
+    },
+    {
+      "identifier": "https://github.com/Niko1221/Strata",
+      "relation": "references",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/anomalyco/opencode",
+      "relation": "references",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "GitHub release v1.0.0 already exists. After enabling the Zenodo↔GitHub webhook, create a follow-up tagged release (recommended: v1.0.1) so Zenodo archives the tree and mints a DOI. Then replace TODO DOI placeholders in README.md, CITATION.bib, and CITATION.cff."
+}

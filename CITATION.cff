@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "If you use OCF V1 findings, please cite this work."
+type: software
+title: "Beyond VRAM Capacity: A Single-Workstation Case Study of Strata, Qwen3.8-Flash-Next, and OpenCode on an RTX 5080"
+version: 1.0.0
+date-released: "2026-11-04"
+license: MIT
+authors:
+  - family-names: Michael
+    given-names: Arun C
+    affiliation: Independent Systems Engineering Case Study
+abstract: >-
+  Verified single-workstation systems case study of OCF V1 (OpenCode FlashNext):
+  running an 83.62 GB on-disk IQ3_S sparse coding model on an NVIDIA RTX 5080
+  (16 GB) via Strata hybrid placement, OpenCode client compaction budgeting, and
+  a hardened single-slot FIFO queue. Reports wire-verified compaction latency
+  reduction (69.282 s to 18.360 s), direct-NVMe PLE host-RAM savings (~26.8 GiB),
+  and deterministic 600 s idle unload with ~30.515 s cold wake.
+keywords:
+  - local LLM
+  - GPU memory hierarchy
+  - OpenCode
+  - Strata
+  - Qwen3.8-Flash-Next
+  - OCF V1
+  - systems engineering
+  - RTX 5080
+repository-code: "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram"
+url: "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/releases/tag/v1.0.0"
+# TODO(DOI): Replace the identifiers block below after Zenodo mints a real DOI.
+# Until then, cite the GitHub release URL above. Do not invent a DOI.
+identifiers:
+  - type: url
+    value: "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/releases/tag/v1.0.0"
+    description: "GitHub release v1.0.0 (pre-Zenodo DOI)"
+preferred-citation:
+  type: techreport
+  authors:
+    - family-names: Michael
+      given-names: Arun C
+  title: "Beyond VRAM Capacity: A Single-Workstation Case Study of Strata, Qwen3.8-Flash-Next, and OpenCode on an RTX 5080"
+  year: 2026
+  month: 11
+  institution: "Independent Systems Engineering Case Study"
+  url: "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram"
+  # TODO(DOI): add doi: 10.5281/zenodo.XXXXXXXX once minted

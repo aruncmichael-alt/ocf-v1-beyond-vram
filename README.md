@@ -1,4 +1,6 @@
-# OCF V1: Orchestrated Local Coding with Strata, Qwen3.8-Flash-Next, and OpenCode on a 16 GB RTX 5080
+# Beyond VRAM Capacity: A Single-Workstation Case Study of Strata, Qwen3.8-Flash-Next, and OpenCode on an RTX 5080
+
+**OCF V1 (OpenCode FlashNext)** — Orchestrated local coding with Strata, Qwen3.8-Flash-Next, and OpenCode on a 16 GB RTX 5080
 
 **Author:** Arun C Michael  
 **Architecture Status:** Verified Workstation Implementation (November 2026)  
@@ -52,12 +54,16 @@ A formatted PDF build is published at [`release/Beyond-VRAM-Capacity-OCF-V1-Tech
 ```text
 .
 ├── README.md                        # Executive overview and quick-start orientation
+├── CITATION.cff / CITATION.bib      # Citation metadata (DOI TODO until Zenodo mints)
+├── .zenodo.json                     # Zenodo GitHub-release archival metadata
 ├── paper/
 │   └── case-study.md                # Full technical paper by Arun C Michael
 ├── docs/
 │   ├── architecture.md              # Memory hierarchy, OCF V1 state machine, and lock protocol
 │   ├── reproduction.md              # 12-stage practical reproduction guide
-│   └── limitations.md               # Scope conditions, queue wait trade-offs, and VRAM notes
+│   ├── limitations.md               # Scope conditions, queue wait trade-offs, and VRAM notes
+│   └── zenodo-setup.md              # Operator checklist to mint a Zenodo DOI
+├── launch/                          # Ready-to-paste community posts (do not Day-1 spray)
 ├── configs/
 │   ├── strata.example.json          # Sanitized Strata 128K profile template
 │   └── opencode.example.json        # Sanitized OpenCode 1.19.5 & compaction budget template
@@ -85,9 +91,14 @@ If you use the **OCF V1** orchestration architecture, compaction budgeting metho
   institution = {Independent Systems Engineering Case Study},
   year        = {2026},
   month       = {November},
-  note        = {Verified workstation implementation of OCF V1 (OpenCode FlashNext) on NVIDIA RTX 5080 16 GB}
+  note        = {Verified workstation implementation of OCF V1 (OpenCode FlashNext) on NVIDIA RTX 5080 16 GB},
+  url         = {https://github.com/aruncmichael-alt/ocf-v1-beyond-vram},
+  % TODO(DOI): Replace with real Zenodo DOI after minting — do not invent a DOI.
+  % doi       = {10.5281/zenodo.XXXXXXXX}
 }
 ```
+
+Also see [`CITATION.cff`](CITATION.cff), [`CITATION.bib`](CITATION.bib), and [`docs/zenodo-setup.md`](docs/zenodo-setup.md) for the Zenodo DOI path.
 
 ---
 ---
