@@ -1,6 +1,6 @@
 {
   "title": "Beyond VRAM Capacity: A Single-Workstation Case Study of Strata, Qwen3.8-Flash-Next, and OpenCode on an RTX 5080",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "upload_type": "publication",
   "publication_type": "technicalnote",
   "description": "<p>Verified single-workstation systems case study of <strong>OCF V1 (OpenCode FlashNext)</strong> by Arun C Michael. Documents hybrid memory placement, client compaction control, and single-slot FIFO orchestration that runs an 83.62&nbsp;GB on-disk <code>IQ3_S</code> sparse coding model (<code>ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF</code>) on an NVIDIA RTX&nbsp;5080 (16&nbsp;GB) with Strata and OpenCode.</p><p>Key verified findings include: direct-NVMe PLE placement saving ~26.8&nbsp;GiB host RAM; wire-verified non-reasoning compaction reducing paired-fixture latency from 69.282&nbsp;s to 18.360&nbsp;s (−73.5%); MTP draft acceptance ~73.49%; and deterministic 600&nbsp;s idle unload with ~30.515&nbsp;s cold wake. Includes sanitized configs, scripts, claims ledger, and the PDF whitepaper asset from GitHub release v1.0.0.</p><p><strong>Do not redistribute GGUF weights from this archive</strong>—fetch and verify shards from the upstream Hugging Face repository.</p>",
@@ -56,5 +56,5 @@
       "resource_type": "software"
     }
   ],
-  "notes": "Zenodo archival release v1.0.1 minted version DOI 10.5281/zenodo.23945369 (concept DOI 10.5281/zenodo.23945368)."
+  "notes": "Archived from the GitHub repository aruncmichael-alt/ocf-v1-beyond-vram. Model weights are not redistributed; fetch and verify the upstream GGUF shards using the SHA-256 digests in results/manifest.json."
 }
