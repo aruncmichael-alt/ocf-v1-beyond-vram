@@ -1,0 +1,27 @@
+# Secrets and local runtime
+.env
+.env.*
+secrets/
+**/local_api_key.txt
+*.sqlite
+*.db
+*.log
+__pycache__/
+.venv/
+venv/
+
+# Model weights and large binaries (fetch upstream; verify hashes)
+*.gguf
+*.bin
+*.safetensors
+models/
+weights/
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+_chunks/
+_split_package.py

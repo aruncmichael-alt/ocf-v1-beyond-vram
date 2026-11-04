@@ -1,0 +1,39 @@
+{
+  "provider": {
+    "name": "strata",
+    "base_url": "http://127.0.0.1:8081/v1",
+    "api_key_env": "LOCAL_STRATA_API_KEY"
+  },
+  "models": {
+    "coding": {
+      "id": "strata/qwen3.8-flash-next-iq3_s",
+      "context_window": 131072,
+      "input_budget": 114688,
+      "max_output_tokens": 16384,
+      "reasoning": "high"
+    },
+    "compaction": {
+      "id": "strata/qwen3.8-flash-next-iq3_s",
+      "trigger_tokens": 81920,
+      "compaction_buffer_tokens": 32768,
+      "inherit_variants": false,
+      "request_hook_override": {
+        "reasoning": "none",
+        "max_output_tokens": 4096
+      },
+      "checkpoint_validator": {
+        "required_ordered_sections": [
+          "Goals",
+          "Constraints",
+          "Completed Work",
+          "Current State",
+          "Next Steps"
+        ],
+        "forbid_duplicate_headings": true,
+        "require_balanced_fences": true,
+        "require_end_marker": true,
+        "require_stop_finish_reason": true
+      }
+    }
+  }
+}

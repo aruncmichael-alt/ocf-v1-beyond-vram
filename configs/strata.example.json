@@ -1,0 +1,39 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8081,
+    "api_key_file": "<LAB_ROOT>/secrets/local_api_key.txt",
+    "idle_unload_seconds": 600
+  },
+  "model": {
+    "alias": "qwen3.8-flash-next-iq3_s",
+    "shards": [
+      "<MODEL_DIR>/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00001-of-00002.gguf",
+      "<MODEL_DIR>/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_S-00002-of-00002.gguf"
+    ],
+    "vision": false,
+    "mtp": {
+      "enabled": true,
+      "speculative_count": 4
+    },
+    "ple": {
+      "placement": "direct",
+      "storage_path": "<NVME_DIR>/ple_assets"
+    }
+  },
+  "runtime": {
+    "slots": 1,
+    "context_length": 131072,
+    "kv_cache": {
+      "type": "INT8",
+      "resident_window": 32768
+    },
+    "vram_reserve_mib": 1536,
+    "preflight_guards": {
+      "min_free_vram_mib": 14000,
+      "min_available_ram_gib": 75,
+      "min_commit_headroom_gib": 85,
+      "refuse_if_ollama_loaded": true
+    }
+  }
+}

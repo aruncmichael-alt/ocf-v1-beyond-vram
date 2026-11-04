@@ -1,0 +1,41 @@
+{
+  "author": "Arun C Michael",
+  "experiment_id": "ocf-v1-rtx5080-runtime-snapshot-01",
+  "evidence_type": "verified_workstation_observation",
+  "observation_window_ist": "2026-11-03 to 2026-11-04",
+  "gpu_class": "NVIDIA RTX 5080 16 GB (16303 MiB reported)",
+  "engine": "Strata 0.2.9 / 0.1.55 (CUDA 13, sm120)",
+  "client": "OpenCode 1.19.5",
+  "model_repository": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+  "model_revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+  "local_model_alias": "strata/qwen3.8-flash-next-iq3_s",
+  "gguf_shards": [
+    {
+      "shard": 1,
+      "size_bytes": 54817524224,
+      "sha256": "4c1eb2ceb4915e1192f4f386021897bde56a97f40a0bb78bb86465e0f7d2aca3"
+    },
+    {
+      "shard": 2,
+      "size_bytes": 28800138432,
+      "sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113"
+    }
+  ],
+  "context_limit_tokens": 131072,
+  "inference_slots": 1,
+  "kv_cache_type": "INT8",
+  "kv_resident_window_tokens": 32768,
+  "ple_placement": "direct_nvme",
+  "idle_unload_seconds": 600,
+  "cold_wake_seconds": 30.515,
+  "active_sample_metrics": {
+    "completed_requests": 48,
+    "output_tokens": 27707,
+    "decode_seconds": 510.7722,
+    "prefill_seconds": 86.43,
+    "prompt_token_reuse_ratio": 0.9809,
+    "mtp_draft_acceptance_ratio": 0.7349,
+    "weighted_decode_tokens_per_second": 54.25,
+    "excludes": ["queue_wait", "tools", "cold_load", "prefill"]
+  }
+}

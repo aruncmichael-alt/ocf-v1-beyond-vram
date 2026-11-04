@@ -1,0 +1,16 @@
+metric,dense_baseline,sparse_flashnext,unit,notes
+algorithm_tasks_passed,5/6,6/6,tasks,64K context temp0
+deterministic_test_cases,504/505,505/505,cases,64K context temp0
+exact_output_tool_checks,3/3,3/3,checks,64K context temp0
+decode_throughput_coding,~58,70.6-89.9,tok/s,coding answers
+retrieval_60071_ttft_s,33.735,29.890,seconds,60K retrieval
+retrieval_60071_total_s,34.192,30.479,seconds,60K retrieval
+compaction_summary_tokens,,1898->575,tokens,paired fixture after request-hook pin
+compaction_latency_s,,69.282->18.360,seconds,paired fixture after request-hook pin
+resumed_coding_checks,,55/55,checks,post-compaction
+active_sample_weighted_decode_tok_s,,54.25,tok/s,48 requests
+active_sample_prompt_reuse_ratio,,0.9809,ratio,48 requests
+active_sample_mtp_accept_ratio,,0.7349,ratio,48 requests
+cold_wake_s,,30.515,seconds,after idle unload
+local_tokens_offload_wave,,772000-773000,tokens,5 jobs operational metric
+cloud_orchestrator_tokens_offload_wave,,~50000,tokens,spec+verify operational metric
