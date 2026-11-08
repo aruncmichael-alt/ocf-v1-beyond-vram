@@ -16,10 +16,10 @@
                      "codex_cursor":  175.34
                  },
     "findings":  [
-                     "No real API tokens (gho_/sk-/JWT) in published tree",
-                     "No host paths (Administrator, FlashNext-Experiment, AI NANOFAR)",
-                     "No product job names (POWERBOT/SNBOTS/SUPERNOVA/ONBOARD) — Job-A..J only",
-                     "api_key hits are placeholders only: \u003cLOCAL_API_KEY\u003e, LOCAL_STRATA_API_KEY env name, \u003cLAB_ROOT\u003e/secrets/...",
+                     "Credential scan found no real API tokens in published tree",
+                     "No host paths in public-facing materials",
+                     "No internal project identifiers in public-facing materials",
+                     "Key-like scan hits were documented placeholders only",
                      "Zenodo concept DOI 10.5281/zenodo.23945369 page: no obvious private-data leak in HTML",
                      "Related conceptdoi sibling noted: 10.5281/zenodo.23945368",
                      "GitHub releases intact: v1.0.0 v1.0.1 v1.0.2 v1.1.0 v1.2.0"

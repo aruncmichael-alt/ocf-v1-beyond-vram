@@ -9,8 +9,8 @@ Upload the PDF as a LinkedIn document carousel, or upload the three page PNGs (`
 
 ## Page-by-page
 
-1. **The result.** Lead with 5.29M local output tokens and 224 coding sessions. Show the $0 local API charge and the 83.6 GB model / 16 GB VRAM hardware envelope. The small qualifier names host RAM and NVMe offload so the page does not imply the full model resides in GPU memory.
-2. **The graphs.** Compare coding output with compaction output, then show the five cloud list-rate counterfactuals. Keep the $0 local API and 94.79% cache-read callouts visible. The graph labels identify the prices as counterfactuals, not bills.
-3. **Links and how to read.** Give clickable links to the repository, v1.2.0 release, Zenodo concept DOI and record, full token report, and paper Section 5.7. A closing note says the cloud comparison is not an invoice, the measurement views are non-additive, and the DOI identifies the Zenodo concept record.
+1. **The result.** Open with “5.29M tokens. $0 local API.” and “Same mix lists ~$98-$259 on cloud.” Give the token total and the local API charge equal visual weight beside the same-footprint cloud list-rate counterfactual. Keep the 224-session date context, 83.6 GB model / 16 GB VRAM envelope, and the small qualifier that the comparison is not an invoice and excludes electricity and other operating costs. State that the ledger and process meters are non-additive.
+2. **The graphs.** Compare coding output with compaction output, then show the four public cloud list-rate counterfactuals: Composer, Sol, Cursor GPT-5.3 Codex, and Grok. Keep the ~$98-$259 band, $0 local API, and 94.79% cache-read callouts visible. The graph labels identify the prices as counterfactuals, not bills.
+3. **Links and how to read.** Give clickable links to the repository, v1.2.0 release, Zenodo concept DOI and record, full token report, and paper Section 5.7. A closing note says the cloud comparison is not an invoice or quality comparison, the measurement views are non-additive, and the DOI identifies the Zenodo concept record.
 
 The figures and wording come from launch/_linkedin_seed.json. The builder embeds charts in the PDF and also writes the three page PNGs listed above for native LinkedIn image upload.

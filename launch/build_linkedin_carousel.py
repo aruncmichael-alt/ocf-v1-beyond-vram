@@ -149,7 +149,8 @@ def add_cloud_chart(path: Path, scenarios: list[tuple[str, float]]) -> None:
 
     labels = [name for name, _ in scenarios]
     values = [value for _, value in scenarios]
-    bars = ax.barh(labels, values, color=[TEAL, TEAL, TEAL, AMBER, AMBER], height=0.56)
+    bar_colors = [TEAL] * max(0, len(values) - 1) + [AMBER]
+    bars = ax.barh(labels, values, color=bar_colors, height=0.56)
     ax.invert_yaxis()
     ax.set_xlim(0, 300)
     ax.xaxis.set_major_locator(MultipleLocator(50))
@@ -211,12 +212,14 @@ def build_pdf(seed: dict) -> None:
         raise ValueError("Seed output total does not equal coding plus compaction.")
 
     scenarios = [
-        ("Codex GPT-6 Luna", float(headline["luna"])),
-        ("Codex GPT-6.1 Sol", float(headline["sol"])),
         ("Cursor Composer 2.5", float(headline["composer"])),
+        ("Codex GPT-6.1 Sol", float(headline["sol"])),
         ("Cursor GPT-5.3 Codex", float(headline["codex_cursor"])),
         ("Cursor Grok 4.7", float(headline["grok"])),
     ]
+    cloud_floor = min(value for _, value in scenarios)
+    cloud_ceiling = max(value for _, value in scenarios)
+    savings_band = "~${:.0f}–${:.0f}".format(cloud_floor, cloud_ceiling)
     with tempfile.TemporaryDirectory(prefix="linkedin-carousel-") as temp_dir:
         temp = Path(temp_dir)
         output_chart = temp / "output-split.png"
@@ -229,40 +232,83 @@ def build_pdf(seed: dict) -> None:
         c.setAuthor("Arun C Michael")
         c.setSubject("Three-page summary of the supplied OCF V1 token economics seed")
 
-        # Page 1: result.
+        # Page 1: token and dollar hook.
         draw_base(c, 1, "The result")
         set_font(c, "Helvetica-Bold", 53, WHITE)
-        c.drawString(76, 1165, "More model than GPU.")
-        set_font(c, "Helvetica", 21, MUTED)
-        c.drawString(80, 1118, "One local inference ledger, measured across 224 coding sessions.")
-        set_font(c, "Helvetica-Bold", 139, TEAL)
-        c.drawString(72, 920, "{:.2f}M".format(output / 1_000_000))
-        set_font(c, "Helvetica-Bold", 23, WHITE)
-        c.drawString(85, 872, "LOCAL OUTPUT TOKENS")
+        c.drawString(76, 1180, "5.29M tokens. $0 local API.")
+        set_font(c, "Helvetica-Bold", 28, AMBER)
+        c.drawString(80, 1135, "Same mix lists {} on cloud.".format(savings_band))
         set_font(c, "Helvetica", 17, MUTED)
-        c.drawString(85, 836, "Coding and compaction output in the retained OpenCode ledger")
+        c.drawString(80, 1097, "Nov 3–8 ledger  /  224 coding sessions  /  OCF V1")
 
-        card_y, card_h, card_w, gap = 560, 190, 286, 25
+        # Twin hero panels give token volume and the list-rate comparison equal weight.
+        hero_y, hero_h = 660, 395
+        left_x, left_w = 76, 448
+        right_x, right_w = 548, 456
+        for x, width in ((left_x, left_w), (right_x, right_w)):
+            c.setFillColor(HexColor(PANEL))
+            c.roundRect(x, hero_y, width, hero_h, 18, stroke=0, fill=1)
+        c.setFillColor(HexColor(TEAL))
+        c.rect(left_x, hero_y + hero_h - 7, left_w, 7, stroke=0, fill=1)
+        c.setFillColor(HexColor(AMBER))
+        c.rect(right_x, hero_y + hero_h - 7, right_w, 7, stroke=0, fill=1)
+
+        set_font(c, "Helvetica-Bold", 126, TEAL)
+        c.drawString(left_x + 28, 865, "{:.2f}M".format(output / 1_000_000))
+        set_font(c, "Helvetica-Bold", 20, WHITE)
+        c.drawString(left_x + 31, 815, "LOCAL OUTPUT TOKENS")
+        set_font(c, "Helvetica", 17, MUTED)
+        c.drawString(left_x + 31, 777, "{:,} exact; coding + compaction".format(output))
+
+        set_font(c, "Helvetica-Bold", 100, AMBER)
+        c.drawString(right_x + 30, 914, "${:,.0f}".format(float(headline["local_api"])))
+        set_font(c, "Helvetica-Bold", 18, WHITE)
+        c.drawString(right_x + 34, 878, "LOCAL API CHARGE  /  THIS LEDGER")
+        c.setStrokeColor(HexColor(GRID))
+        c.setLineWidth(1)
+        c.line(right_x + 30, 848, right_x + right_w - 30, 848)
+        set_font(c, "Helvetica-Bold", 50, TEAL)
+        c.drawString(right_x + 30, 775, savings_band)
+        set_font(c, "Helvetica-Bold", 15, WHITE)
+        c.drawString(right_x + 34, 741, "SAME-MIX CLOUD LIST RATE")
+        set_font(c, "Helvetica", 13, MUTED)
+        c.drawString(right_x + 34, 714, "COUNTERFACTUAL  /  NOT A MEASURED BILL")
+
+        card_y, card_h, card_w, gap = 465, 150, 286, 25
         draw_card(c, 76, card_y, card_w, card_h, str(sessions), "coding sessions", TEAL)
-        draw_card(c, 76 + card_w + gap, card_y, card_w, card_h, "$0", "local API charge", AMBER, "in this ledger")
+        draw_card(
+            c,
+            76 + card_w + gap,
+            card_y,
+            card_w,
+            card_h,
+            "83.6 / 16 GB",
+            "model / VRAM",
+            AMBER,
+            "host RAM + NVMe offload",
+        )
         draw_card(
             c,
             76 + 2 * (card_w + gap),
             card_y,
             card_w,
             card_h,
-            "83.6 / 16",
-            "GB model / GB VRAM",
+            "{:.2f}%".format(cache_pct),
+            "cache-read share",
             TEAL,
+            "of recorded input",
         )
-        set_font(c, "Helvetica", 17, MUTED)
-        c.drawString(82, 515, "One workstation envelope: high host RAM and NVMe offload.")
-        c.setStrokeColor(HexColor(GRID))
-        c.line(76, 420, 1004, 420)
+        set_font(c, "Helvetica", 14, MUTED)
+        c.drawString(
+            80,
+            418,
+            "Cloud range is a same-footprint list-rate counterfactual, not an invoice; electricity and operating costs remain.",
+        )
+        c.drawString(80, 394, "The ledger and process meters overlap; their totals are non-additive.")
         set_font(c, "Helvetica-Bold", 21, WHITE)
-        c.drawString(82, 370, "A measured case study by Arun C Michael")
+        c.drawString(82, 337, "A measured case study by Arun C Michael")
         set_font(c, "Helvetica", 18, MUTED)
-        c.drawString(82, 333, "OCF V1  /  local execution  /  dated token ledger")
+        c.drawString(82, 301, "OCF V1  /  local execution  /  dated token ledger")
         c.showPage()
 
         # Page 2: output split and same-footprint cloud prices.
@@ -270,7 +316,7 @@ def build_pdf(seed: dict) -> None:
         set_font(c, "Helvetica-Bold", 48, WHITE)
         c.drawString(76, 1195, "Where the numbers land.")
         set_font(c, "Helvetica", 18, MUTED)
-        c.drawString(80, 1157, "One output ledger; five list-rate cloud counterfactuals.")
+        c.drawString(80, 1157, "One output ledger; four public list-rate counterfactuals ({}).".format(savings_band))
 
         set_font(c, "Helvetica-Bold", 22, WHITE)
         c.drawString(82, 1088, "Output split  /  5,290,865 total")
