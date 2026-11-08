@@ -13,4 +13,4 @@ Upload the PDF as a LinkedIn document carousel, or upload the three page PNGs (`
 2. **The graphs.** Compare coding output with compaction output, then show the five cloud list-rate counterfactuals. Keep the $0 local API and 94.79% cache-read callouts visible. The graph labels identify the prices as counterfactuals, not bills.
 3. **Links and how to read.** Give clickable links to the repository, v1.2.0 release, Zenodo concept DOI and record, full token report, and paper Section 5.7. A closing note says the cloud comparison is not an invoice, the measurement views are non-additive, and the DOI identifies the Zenodo concept record.
 
-The figures and wording come from launch/_linkedin_seed.json. No page PNGs are included; the builder creates temporary chart PNGs while embedding them in the PDF.
+The figures and wording come from launch/_linkedin_seed.json. The builder embeds charts in the PDF and also writes the three page PNGs listed above for native LinkedIn image upload.
