@@ -14,3 +14,15 @@ active_sample_mtp_accept_ratio,,0.7349,ratio,48 requests
 cold_wake_s,,30.515,seconds,after idle unload
 local_tokens_offload_wave,,772000-773000,tokens,5 jobs operational metric
 cloud_orchestrator_tokens_offload_wave,,~50000,tokens,spec+verify operational metric
+full_ledger_output_total,,5290865,tokens,OpenCode full ledger 3-8 Nov 2026
+full_ledger_output_coding,,5090841,tokens,coding category
+full_ledger_output_compaction,,200024,tokens,3.78% of combined output
+full_ledger_fresh_input,,20537861,tokens,
+full_ledger_cache_read,,373320427,tokens,94.79% of recorded input
+full_ledger_coding_sessions,,224,sessions,
+counterfactual_codex_sol_usd,,131.32,USD,list-price standard rates
+counterfactual_codex_luna_usd,,8.43,USD,list-price standard rates
+counterfactual_cursor_composer25_usd,,98.16,USD,metered; weekly pool may cover
+counterfactual_cursor_grok47_usd,,259.48,USD,
+counterfactual_cursor_gpt53_codex_usd,,175.34,USD,before subscription; +99.79 CTR teams = 275.13
+local_api_usd,,0,USD,loopback API; electricity not measured (illustrative 54.76-98.57 INR)

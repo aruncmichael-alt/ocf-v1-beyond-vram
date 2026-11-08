@@ -2,7 +2,13 @@
   "author": "Arun C Michael",
   "experiment_id": "ocf-v1-rtx5080-runtime-snapshot-01",
   "evidence_type": "verified_workstation_observation",
-  "observation_window_ist": "2026-11-03 to 2026-11-04",
+  "observation_window_ist": "2026-11-03 01:01:44 to 2026-11-08 10:57:12",
+  "full_ledger_snapshot_ist": "2026-11-08 10:57:12",
+  "artifacts": {
+    "full_token_cost_report": "docs/full-token-cost-report-2026-11-08.md",
+    "full_ledger_json": "results/full-ledger-2026-11-08.json",
+    "full_ledger_summary_csv": "results/full-ledger-2026-11-08-summary.csv"
+  },
   "gpu_class": "NVIDIA RTX 5080 16 GB (16303 MiB reported)",
   "engine": "Strata 0.2.9 / 0.1.55 (CUDA 13, sm120)",
   "client": "OpenCode 1.19.5",

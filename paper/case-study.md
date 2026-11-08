@@ -10,14 +10,14 @@
 
 A persistent misconception in local language model deployment is that a GPU’s physical video memory (VRAM) ceiling defines the maximum total parameter weight of a usable coding model. On a 16 GB consumer GPU, this assumption restricts practitioners to small dense models that frequently struggle with multi-file reasoning or complex algorithmic synthesis. This paper documents a single-workstation systems engineering architecture conducted by Arun C Michael that runs an 83.62 GB (decimal on-disk weight) quantized sparse model—`ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF` (`IQ3_S` quantization, referred to operationally as `FlashNext`)—on an NVIDIA RTX 5080 (16,303 MiB reported VRAM) paired with a high-RAM Windows host and local NVMe storage.
 
-Rather than claiming a universal model benchmark or unconditional parity with frontier cloud APIs, this study details the systems engineering required to make an oversized sparse model operationally viable for autonomous software engineering tasks. We present the **OpenCode FlashNext (OCF V1)** orchestration protocol, which couples an external IDE orchestrator (such as Cursor, Claude Code, or Windsurf) with an isolated **OpenCode** client and a loopback **Strata** inference endpoint across a serialized, single-slot First-In-First-Out (FIFO) job queue. We report verified empirical measurements across five core engineering interventions: (1) explicit Per-Layer Embedding / lookup (`PLE`) placement on direct NVMe storage to eliminate an automatic 28.8 GB (26.8 GiB) host-RAM residency spike; (2) client context budgeting at 131,072 tokens with a hard 81,920-token compaction trigger; (3) wire-verified disabling of inherited reasoning tokens during context compaction, reducing summary generation time from 69.282 seconds to 18.360 seconds (a 69.7% token reduction on a paired fixture); (4) atomic Windows mutex and process-identity lock hardening across concurrent queue workers; and (5) deterministic 600-second idle GPU unloading. Finally, we document negative findings—including zero-reasoning formatting compliance trade-offs, single-slot FIFO queue waiting latency, and a transient 0 MiB free-VRAM log warning—and provide a complete reproduction protocol for engineering teams.
+Rather than claiming a universal model benchmark or unconditional parity with frontier cloud APIs, this study details the systems engineering required to make an oversized sparse model operationally viable for autonomous software engineering tasks. We present the **OpenCode FlashNext (OCF V1)** orchestration protocol, which couples an external IDE orchestrator (such as Cursor, Claude Code, or Windsurf) with an isolated **OpenCode** client and a loopback **Strata** inference endpoint across a serialized, single-slot First-In-First-Out (FIFO) job queue. We report verified empirical measurements across five core engineering interventions: (1) explicit Per-Layer Embedding / lookup (`PLE`) placement on direct NVMe storage to eliminate an automatic 28.8 GB (26.8 GiB) host-RAM residency spike; (2) client context budgeting at 131,072 tokens with a hard 81,920-token compaction trigger; (3) wire-verified disabling of inherited reasoning tokens during context compaction, reducing summary generation time from 69.282 seconds to 18.360 seconds (a 69.7% token reduction on a paired fixture); (4) atomic Windows mutex and process-identity lock hardening across concurrent queue workers; and (5) deterministic 600-second idle GPU unloading. Beyond the five-job production wave, we extend the token-economics measurement to the complete retained all-workspace OpenCode ledger for 3–8 November 2026: **5,290,865** output tokens across **224** coding sessions with a **94.79%** cache-read input share, priced against list-rate cloud counterfactuals of **$8.43–$259.48** against a **$0** local API charge (Section 5.7; full sanitized ledger in [`docs/full-token-cost-report-2026-11-08.md`](../docs/full-token-cost-report-2026-11-08.md)). Finally, we document negative findings—including zero-reasoning formatting compliance trade-offs, single-slot FIFO queue waiting latency, and a transient 0 MiB free-VRAM log warning—and provide a complete reproduction protocol for engineering teams.
 
 ---
 
 ## 1. Introduction and Engineering Thesis
 
 ### 1.1 The Cloud Token vs. Local Slot Dilemma
-Software engineering teams using agentic IDE environments (such as Cursor, Windsurf, or cloud CLI agents) incur substantial token consumption when frontier cloud models iteratively read files, synthesize patches, fail verification tests, and re-prompt within closed tool loops. Offloading bounded implementation slices to a local workstation GPU restricts the cloud orchestrator to task specification, diff verification, and test execution while moving high-volume code synthesis onto local hardware.
+Software engineering teams using agentic IDE environments (such as Cursor, Windsurf, or cloud CLI agents) incur substantial token consumption when frontier cloud models iteratively read files, synthesize patches, fail verification tests, and re-prompt within closed tool loops. Offloading bounded implementation slices to a local workstation GPU restricts the cloud orchestrator to task specification, diff verification, and test execution while moving high-volume code synthesis onto local hardware. The all-workspace economics of this offload pattern—measured across the complete retained OpenCode ledger for 3–8 November 2026 and reported in [`docs/full-token-cost-report-2026-11-08.md`](../docs/full-token-cost-report-2026-11-08.md)—are quantified in Section 5.7.
 
 However, transitioning from cloud APIs to a single-workstation 16 GB GPU introduces two structural bottlenecks:
 1. **Memory Hierarchy Constraints:** A model whose quantized weights exceed 83 GB on disk cannot reside wholly in 16 GB of VRAM. Achieving interactive throughput requires a sparse architecture where active parameters, attention caches, and hot weights fit within VRAM and host DRAM, while cold lookup structures are explicitly managed across NVMe storage and system memory.
@@ -279,6 +279,61 @@ In a production wave tracked across five tasks—four serialized FIFO jobs (`Job
 #### Queue Latency vs. Token Economics
 1. **Substantial Offload of Iterative Synthesis:** Across the five jobs, the local `Strata` + `FlashNext` stack processed approximately **772,000–773,000 combined local tokens** (including iterative multi-turn prefix reuse and tool reads), while the cloud orchestrator expended approximately **50,000 tokens** strictly to author the bounded specifications and verify the resulting patches. (Because local input token counters include `98.09%` prefix cache reuse and model-specific tokenization, raw local token totals should be interpreted as local engine workload volume rather than a 1:1 linear subtraction from billed cloud tokens.)
 2. **Single-Slot Serialization Trade-Off:** `Job D` required only **~7 minutes** of active GPU execution but experienced a **~42-minute queue wait** behind `Job B` (~22m) and `Job C` (~23m). This illustrates the core architectural trade-off of `OCF V1`: single-slot FIFO serialization completely protects the 16 GB GPU from memory thrashing and prevents the cloud orchestrator from burning tokens while the GPU is busy, at the cost of wall-clock queuing latency when long background jobs occupy the slot.
+
+### 5.7 All-Workspace Token Economics (3–8 November 2026)
+
+The Section 5.6 wave covers five bounded jobs. This section widens the measurement scope to the complete retained all-workspace OpenCode ledger, assembled read-only at the 2026-11-08 10:57:12 IST snapshot over an observation window of 3–8 November 2026. Method, per-scenario rates, and configuration details are documented in [`docs/full-token-cost-report-2026-11-08.md`](../docs/full-token-cost-report-2026-11-08.md) with artifacts `results/full-ledger-2026-11-08.json` and `results/full-ledger-2026-11-08-summary.csv`.
+
+#### Headline Ledger Volumes
+
+| Measure | Value |
+| :--- | ---: |
+| **OpenCode output tokens** | **5,290,865** (5,090,841 coding + 200,024 compaction) |
+| Fresh-input tokens | 20,537,861 |
+| Cache-read tokens | 373,320,427 |
+| Coding sessions | 224 |
+| Cache-read share of input | **94.79%** |
+
+Compaction accounts for **3.78%** of combined OpenCode output. The retained Strata timing log (5,377,055 output tokens at a weighted 54.55 tok/s) and the current Strata process (started 2026-11-06) are **separate, non-additive measurement views**; their counters must not be summed with the OpenCode ledger or with each other.
+
+#### List-Price Cloud Counterfactuals for the Same Recorded Footprint
+
+Each scenario applies the provider's listed per-million rates to the recorded OpenCode token mix (20,537,861 fresh input + 373,320,427 cache-read + 5,290,865 output tokens). These are token-price counterfactuals, not measured cloud usage or invoices.
+
+| Counterfactual scenario | Modeled total |
+| :--- | ---: |
+| Codex GPT-6 Luna standard | **$8.43** |
+| Cursor Composer 2.5 (metered; a weekly pool may cover some or all) | $98.16 |
+| Codex GPT-6.1 Sol standard | $131.32 |
+| Cursor GPT-5.3 Codex (before subscription; Teams-plus-CTR **$275.13** including a $99.79 CTR add-on) | $175.34 |
+| Cursor Grok 4.7 | **$259.48** |
+
+The base scenario band is **$8.43–$259.48**. The local API charge is **$0** (loopback endpoint; no cloud API cost in this ledger). Illustrative decode-only electricity is **₹54.76–₹98.57**, based on assumed wall power (250–450 W) and a ₹8/kWh tariff, not a wall-meter reading; electricity is otherwise `NOT MEASURED`.
+
+#### Largest Retained OCF Jobs (Anonymized)
+
+Job labels are anonymized; “work” and “compaction” output are kept separate and the total is their sum.
+
+| Job | Work output tokens | Compaction tokens | Total output tokens |
+| :--- | ---: | ---: | ---: |
+| Job-A | 102,163 | 63,913 | 166,076 |
+| Job-B | 43,684 | 110,975 | 154,659 |
+| Job-C | 33,637 | 91,684 | 125,321 |
+| Job-D | 90,433 | 3,242 | 93,675 |
+| Job-E | 80,348 | 10,729 | 91,077 |
+| Job-F | 74,228 | 4,747 | 78,975 |
+| Job-G | 74,200 | 3,966 | 78,166 |
+| Job-H | 67,077 | 5,491 | 72,568 |
+| Job-I | 62,384 | 9,017 | 71,401 |
+| Job-J | 67,650 | 1,285 | 68,935 |
+
+#### Interpretation and Honesty Conditions
+
+1. **No quality parity claim.** The cloud rows are same-footprint arithmetic applying listed rates to locally recorded counts; cloud models can tokenize, reason, call tools, and complete work differently.
+2. **Meters must not be summed.** The OpenCode ledger, the current Strata process counters, and the retained timing log are overlapping, non-additive views of the same activity.
+3. **Generated is not accepted.** Output includes reasoning, tool activity, failures, and compaction—not only code retained by a project.
+4. **Orchestrator tokens are outside local meters.** Cloud IDE preparation and review tokens are not included in Strata's or OpenCode's counters, and no Cursor implementation-token savings are claimed.
+5. **The snapshot is time-bounded.** In-flight queue work may have settled after the 2026-11-08 10:57:12 IST snapshot.
 
 ---
 

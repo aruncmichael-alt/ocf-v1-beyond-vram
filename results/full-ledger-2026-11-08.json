@@ -1,0 +1,221 @@
+﻿{
+    "schema_version":  1,
+    "snapshot_local":  "2026-11-08T10:57:12+05:30",
+    "window_start_local":  "2026-11-03T01:01:44+05:30",
+    "method":  "Read-only Strata metrics API, OpenCode SQLite mode=ro, retained Strata timing log, installed receipts, OCF status. No mutation.",
+    "headline":  {
+                     "opencode_output_total":  5290865,
+                     "opencode_output_coding":  5090841,
+                     "opencode_output_compaction":  200024,
+                     "opencode_fresh_input":  20537861,
+                     "opencode_cache_read":  373320427,
+                     "coding_sessions":  224,
+                     "cache_read_share_of_input":  0.9479,
+                     "compaction_share_of_output":  0.0378
+                 },
+    "opencode_coding":  {
+                            "sessions":  224,
+                            "assistant_steps":  8542,
+                            "fresh_input":  17500678,
+                            "cache_read":  373320427,
+                            "output":  5090841
+                        },
+    "opencode_compaction":  {
+                                "sessions":  79,
+                                "assistant_steps":  116,
+                                "fresh_input":  3037183,
+                                "cache_read":  0,
+                                "output":  200024
+                            },
+    "strata_current_process":  {
+                                   "started_local":  "2026-11-06T08:18:55+05:30",
+                                   "completed_requests":  4575,
+                                   "fresh_input":  9282990,
+                                   "cached_input":  192807626,
+                                   "total_input_incl_cache":  202090616,
+                                   "output":  2510522,
+                                   "decode_seconds":  45831.455,
+                                   "weighted_decode_tok_s":  54.78,
+                                   "cache_read_share":  0.9541
+                               },
+    "strata_retained_timing_log":  {
+                                       "completed_records":  9032,
+                                       "output":  5377055,
+                                       "fresh_input":  21697444,
+                                       "cached_input":  376113421,
+                                       "decode_seconds":  98565.983,
+                                       "decode_hours":  27.38,
+                                       "weighted_output_tok_s":  54.55,
+                                       "median_request_tok_s":  55.7,
+                                       "request_speed_range_tok_s":  [
+                                                                         2.3,
+                                                                         94.1
+                                                                     ]
+                                   },
+    "config_public":  {
+                          "runtime":  "Strata engine 0.1.55",
+                          "model":  "qwen3.8-flash-next-iq3_s",
+                          "api":  "http://127.0.0.1:8081/v1",
+                          "gpu":  "NVIDIA RTX 5080",
+                          "vram_mib":  16303,
+                          "context":  131072,
+                          "coding_output_ceiling":  16384,
+                          "coding_reasoning":  "high",
+                          "ocf_write_variant":  "deep",
+                          "compaction":  "flashnext-compaction; no thinking; output 4096; trigger 81920",
+                          "slots":  1,
+                          "kv":  "int8",
+                          "kv_resident":  32768,
+                          "expert_cache_slots":  3613,
+                          "expert_cache_primary_mib":  7072,
+                          "host_arena_mib":  47962,
+                          "pool_workers":  7,
+                          "prefill_cap":  8192,
+                          "mtp":  "spec=6, mtp_max=4, lookup=3",
+                          "idle_unload_s":  600,
+                          "cold_wake_s":  30.515,
+                          "memory_guard":  "65 GiB RAM and 70 GiB commit thresholds; receipt 2026-11-05",
+                          "host_ram_note":  "high-RAM host (Reproducibility Box; exact GiB optional)"
+                      },
+    "counterfactuals_usd":  [
+                                {
+                                    "cache_rate":  0.1,
+                                    "per_1M_ocf_output":  24.82,
+                                    "fresh_rate":  2,
+                                    "blended_per_1M_recorded":  0.329,
+                                    "total":  131.32,
+                                    "scenario":  "Codex GPT-6.1 Sol standard",
+                                    "out_rate":  10
+                                },
+                                {
+                                    "cache_rate":  0.01,
+                                    "per_1M_ocf_output":  1.59,
+                                    "fresh_rate":  0.1,
+                                    "blended_per_1M_recorded":  0.0211,
+                                    "total":  8.43,
+                                    "scenario":  "Codex GPT-6 Luna standard",
+                                    "out_rate":  0.5
+                                },
+                                {
+                                    "scenario":  "Cursor GPT-5.3 Codex",
+                                    "per_1M_ocf_output":  33.14,
+                                    "out_rate":  14,
+                                    "fresh_rate":  1.75,
+                                    "teams_ctr_extra":  99.79,
+                                    "cache_rate":  0.175,
+                                    "teams_total":  275.13,
+                                    "blended_per_1M_recorded":  0.4393,
+                                    "total":  175.34
+                                },
+                                {
+                                    "out_rate":  2.5,
+                                    "per_1M_ocf_output":  18.55,
+                                    "fresh_rate":  0.5,
+                                    "scenario":  "Cursor Composer 2.5",
+                                    "cache_rate":  0.2,
+                                    "total":  98.16,
+                                    "note":  "metered value; weekly pool may cover",
+                                    "blended_per_1M_recorded":  0.2459
+                                },
+                                {
+                                    "cache_rate":  0.5,
+                                    "per_1M_ocf_output":  49.04,
+                                    "fresh_rate":  2,
+                                    "blended_per_1M_recorded":  0.6501,
+                                    "total":  259.48,
+                                    "scenario":  "Cursor Grok 4.7",
+                                    "out_rate":  6
+                                }
+                            ],
+    "local_cost":  {
+                       "api_usd":  0,
+                       "electricity_illustrative":  {
+                                                        "decode_hours":  27.38,
+                                                        "assumed_wall_w_min":  250,
+                                                        "assumed_wall_w_max":  450,
+                                                        "tariff_inr_per_kwh":  8,
+                                                        "kwh_min":  6.84,
+                                                        "kwh_max":  12.32,
+                                                        "inr_min":  54.76,
+                                                        "inr_max":  98.57,
+                                                        "inr_per_1M_output_min":  10.18,
+                                                        "inr_per_1M_output_max":  18.33,
+                                                        "caveat":  "Assumption-only; excludes prefill, idle, tools, orchestration, depreciation"
+                                                    }
+                   },
+    "top_jobs_anonymized":  [
+                                {
+                                    "compact":  63913,
+                                    "work":  102163,
+                                    "id":  "Job-A",
+                                    "total":  166076
+                                },
+                                {
+                                    "compact":  110975,
+                                    "work":  43684,
+                                    "id":  "Job-B",
+                                    "total":  154659
+                                },
+                                {
+                                    "compact":  91684,
+                                    "work":  33637,
+                                    "id":  "Job-C",
+                                    "total":  125321
+                                },
+                                {
+                                    "compact":  3242,
+                                    "work":  90433,
+                                    "id":  "Job-D",
+                                    "total":  93675
+                                },
+                                {
+                                    "compact":  10729,
+                                    "work":  80348,
+                                    "id":  "Job-E",
+                                    "total":  91077
+                                },
+                                {
+                                    "compact":  4747,
+                                    "work":  74228,
+                                    "id":  "Job-F",
+                                    "total":  78975
+                                },
+                                {
+                                    "compact":  3966,
+                                    "work":  74200,
+                                    "id":  "Job-G",
+                                    "total":  78166
+                                },
+                                {
+                                    "compact":  5491,
+                                    "work":  67077,
+                                    "id":  "Job-H",
+                                    "total":  72568
+                                },
+                                {
+                                    "compact":  9017,
+                                    "work":  62384,
+                                    "id":  "Job-I",
+                                    "total":  71401
+                                },
+                                {
+                                    "compact":  1285,
+                                    "work":  67650,
+                                    "id":  "Job-J",
+                                    "total":  68935
+                                }
+                            ],
+    "pricing_sources":  [
+                            "https://developers.openai.com/api/docs/pricing",
+                            "https://cursor.com/docs/models-and-pricing",
+                            "https://prod.cursor.com/docs/models/gpt-5-3-codex",
+                            "https://prod.cursor.com/help/models-and-usage/token-rate"
+                        ],
+    "caveats":  [
+                    "Do not sum OpenCode ledger + current process + retained timing log",
+                    "Counterfactual same-token footprint only; not quality/path equivalence",
+                    "Generated output includes reasoning, tools, failures, compaction — not accepted code",
+                    "Orchestrator Cursor/Codex prep/review tokens outside Strata meters",
+                    "In-flight queue may settle after snapshot"
+                ]
+}

@@ -20,6 +20,15 @@ Authored and validated by **Arun C Michael**, this repository provides the archi
 
 ---
 
+## What's new in v1.2.0
+
+- **Full all-workspace token economics (3–8 November 2026):** the complete retained OpenCode ledger records **5,290,865 output tokens** (5,090,841 coding + 200,024 compaction) across **224** coding sessions, with **94.79%** cache-read share of the recorded input (`20,537,861` fresh + `373,320,427` cache-read).
+- **List-price cloud counterfactual band:** pricing the same recorded footprint at published rates yields **$8.43–$259.48** (Codex GPT-6.1 Sol `$131.32`; Cursor GPT-5.3 Codex `$175.34`, Teams-plus-CTR `$275.13`; Composer 2.5 `$98.16` metered), against a **$0** local API charge; illustrative decode-only electricity ₹54.76–₹98.57 is an assumption, not a wall-meter measurement.
+- **Canonical report:** methodology, per-scenario rates, and sanitized artifacts in [`docs/full-token-cost-report-2026-11-08.md`](docs/full-token-cost-report-2026-11-08.md) (`results/full-ledger-2026-11-08.json` / `-summary.csv`). Paper Section 5.7 and claims V-16–V-22 summarize it.
+- Meters remain non-additive (OpenCode ledger vs. Strata process vs. timing log); counterfactuals are not invoices, and no DOI is invented until Zenodo mints one.
+
+---
+
 ## Core Engineering Highlights
 
 1. **83.62 GB Sparse Model on a 16 GB GPU:** Combines GPU hot-layer/KV residency (`INT8` KV cache, `32,768` resident window), high-RAM host offloading, and `MTP` speculative decoding (`73.49%` draft acceptance) to sustain **54.25–58.84 tokens/s** weighted decode throughput across `131,072`-token context windows.

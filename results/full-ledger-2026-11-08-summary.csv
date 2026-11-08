@@ -1,0 +1,20 @@
+﻿metric,value,unit,notes
+opencode_output_total,5290865,tokens,coding+compaction finalized ledger
+opencode_output_coding,5090841,tokens,
+opencode_output_compaction,200024,tokens,3.78% of output
+opencode_fresh_input,20537861,tokens,
+opencode_cache_read,373320427,tokens,94.79% of all input
+coding_sessions,224,sessions,
+assistant_steps_combined,8658,steps,8542 coding + 116 compaction
+strata_retained_output,5377055,tokens,timing log; not additive with OpenCode
+strata_retained_weighted_decode_tok_s,54.55,tok/s,
+strata_retained_decode_hours,27.38,hours,
+strata_current_process_output,2510522,tokens,since 2026-11-06; not additive
+counterfactual_codex_sol_usd,131.32,USD,standard short-context rates
+counterfactual_codex_luna_usd,8.43,USD,standard short-context rates
+counterfactual_cursor_gpt53_codex_usd,175.34,USD,before subscription; +99.79 CTR teams
+counterfactual_cursor_composer25_usd,98.16,USD,metered; pool may cover
+counterfactual_cursor_grok47_usd,259.48,USD,
+local_api_usd,0,USD,
+electricity_inr_min,54.76,INR,illustrative decode-only
+electricity_inr_max,98.57,INR,illustrative decode-only

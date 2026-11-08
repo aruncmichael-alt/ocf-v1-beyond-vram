@@ -1,9 +1,9 @@
 {
   "title": "Beyond VRAM Capacity: A Single-Workstation Case Study of Strata, Qwen3.8-Flash-Next, and OpenCode on an RTX 5080",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "upload_type": "publication",
   "publication_type": "technicalnote",
-  "description": "<p>Verified single-workstation systems case study of <strong>OCF V1 (OpenCode FlashNext)</strong> by Arun C Michael. Documents hybrid memory placement, client compaction control, and single-slot FIFO orchestration that runs an 83.62&nbsp;GB on-disk <code>IQ3_S</code> sparse coding model (<code>ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF</code>) on an NVIDIA RTX&nbsp;5080 (16&nbsp;GB) with Strata and OpenCode.</p><p>Key verified findings include: direct-NVMe PLE placement saving ~26.8&nbsp;GiB host RAM; wire-verified non-reasoning compaction reducing paired-fixture latency from 69.282&nbsp;s to 18.360&nbsp;s (−73.5%); MTP draft acceptance ~73.49%; and deterministic 600&nbsp;s idle unload with ~30.515&nbsp;s cold wake. Includes sanitized configs, scripts, claims ledger, and the PDF whitepaper asset from GitHub release v1.0.0.</p><p><strong>Do not redistribute GGUF weights from this archive</strong>—fetch and verify shards from the upstream Hugging Face repository.</p>",
+  "description": "<p>Verified single-workstation systems case study of <strong>OCF V1 (OpenCode FlashNext)</strong> by Arun C Michael. Documents hybrid memory placement, client compaction control, and single-slot FIFO orchestration that runs an 83.62&nbsp;GB on-disk <code>IQ3_S</code> sparse coding model (<code>ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF</code>) on an NVIDIA RTX&nbsp;5080 (16&nbsp;GB) with Strata and OpenCode.</p><p>Key verified findings include: direct-NVMe PLE placement saving ~26.8&nbsp;GiB host RAM; wire-verified non-reasoning compaction reducing paired-fixture latency from 69.282&nbsp;s to 18.360&nbsp;s (−73.5%); MTP draft acceptance ~73.49%; and deterministic 600&nbsp;s idle unload with ~30.515&nbsp;s cold wake. Includes sanitized configs, scripts, claims ledger, and the PDF whitepaper asset from GitHub release v1.0.0.</p><p>Release v1.2.0 adds full retained all-workspace token economics for 3–8 November 2026: <strong>5,290,865</strong> OpenCode output tokens (5,090,841 coding + 200,024 compaction) across 224 coding sessions, with cache-read tokens (373,320,427) dominating 94.79% of recorded input against 20,537,861 fresh-input tokens. The same recorded footprint priced at published list rates yields a cloud counterfactual band of <strong>$8.43–$259.48</strong> ($275.13 for a Teams-plus-CTR case), versus a <strong>$0</strong> local API charge; electricity figures are illustrative assumptions, not measurements. Counterfactuals are not invoices, meters are non-additive, and no quality parity is claimed.</p><p><strong>Do not redistribute GGUF weights from this archive</strong>—fetch and verify shards from the upstream Hugging Face repository.</p>",
   "creators": [
     {
       "name": "Michael, Arun C",
@@ -41,6 +41,11 @@
       "resource_type": "publication-technicalnote"
     },
     {
+      "identifier": "10.5281/zenodo.23945369",
+      "relation": "isVersionOf",
+      "resource_type": "publication-technicalnote"
+    },
+    {
       "identifier": "https://huggingface.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
       "relation": "references",
       "resource_type": "other"
@@ -56,5 +61,5 @@
       "resource_type": "software"
     }
   ],
-  "notes": "Archived from the GitHub repository aruncmichael-alt/ocf-v1-beyond-vram. Model weights are not redistributed; fetch and verify the upstream GGUF shards using the SHA-256 digests in results/manifest.json."
+  "notes": "v1.2.0 adds the full retained all-workspace ledger economics (docs/full-token-cost-report-2026-11-08.md plus results/full-ledger-2026-11-08 artifacts). The concept DOI 10.5281/zenodo.23945369 links the archived versions of this series. Do not invent DOI strings; wait for Zenodo to mint a version DOI via the GitHub-release webhook for the v1.2.0 tagged release. Model weights are not redistributed; fetch and verify upstream GGUF shards using SHA-256 digests in results/manifest.json."
 }

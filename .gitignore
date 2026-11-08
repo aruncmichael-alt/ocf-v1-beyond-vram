@@ -25,3 +25,14 @@ Desktop.ini
 .idea/
 _chunks/
 _split_package.py
+
+# Private metering seeds (never publish)
+.handoff/full-ledger-PRIVATE*
+.handoff/*_STDERR*
+.handoff/*_RAW*
+.handoff/*_RESULT.md
+.handoff/*_PROMPT.md
+.handoff/*_EXEC*
+
+.handoff/
+

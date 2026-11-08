@@ -8,3 +8,10 @@ This package has been sanitized for public GitHub and academic/technical release
 
 ---
 ---
+
+### Full-ledger wave — 2026-11-08
+
+* [x] **Anonymized jobs:** The full-ledger report lists only Job-A through Job-J for retained job-level output.
+* [x] **Internal identifier review:** Added report text contains no internal project or product identifiers.
+* [x] **Path and endpoint review:** No host paths or credential values were added; the inference API reference is loopback-only.
+* [x] **Ledger consistency:** Report headlines and cost values were checked against the seeded JSON and CSV.
