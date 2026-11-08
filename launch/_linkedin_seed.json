@@ -1,0 +1,41 @@
+﻿{
+    "scanned_utc":  "2026-11-08T06:24:56.5577602Z",
+    "headline":  {
+                     "cache":  373320427,
+                     "coding":  5090841,
+                     "cache_pct":  94.79,
+                     "fresh":  20537861,
+                     "sessions":  224,
+                     "compaction":  200024,
+                     "sol":  131.32,
+                     "composer":  98.16,
+                     "local_api":  0,
+                     "output":  5290865,
+                     "grok":  259.48,
+                     "luna":  8.43,
+                     "codex_cursor":  175.34
+                 },
+    "findings":  [
+                     "No real API tokens (gho_/sk-/JWT) in published tree",
+                     "No host paths (Administrator, FlashNext-Experiment, AI NANOFAR)",
+                     "No product job names (POWERBOT/SNBOTS/SUPERNOVA/ONBOARD) — Job-A..J only",
+                     "api_key hits are placeholders only: \u003cLOCAL_API_KEY\u003e, LOCAL_STRATA_API_KEY env name, \u003cLAB_ROOT\u003e/secrets/...",
+                     "Zenodo concept DOI 10.5281/zenodo.23945369 page: no obvious private-data leak in HTML",
+                     "Related conceptdoi sibling noted: 10.5281/zenodo.23945368",
+                     "GitHub releases intact: v1.0.0 v1.0.1 v1.0.2 v1.1.0 v1.2.0"
+                 ],
+    "repo":  "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram",
+    "tip":  "main @ v1.2.0 economics package",
+    "residual_notes":  [
+                           "Loopback 127.0.0.1:8081 is intentional public documentation",
+                           "Hardware envelope (RTX 5080, VRAM, high-RAM thresholds) is intentionally disclosed case-study data"
+                       ],
+    "links":  {
+                  "paper":  "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/blob/main/paper/case-study.md",
+                  "github":  "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram",
+                  "zenodo_record":  "https://zenodo.org/records/23945369",
+                  "full_report":  "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/blob/main/docs/full-token-cost-report-2026-11-08.md",
+                  "release_v120":  "https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/releases/tag/v1.2.0",
+                  "doi_concept":  "https://doi.org/10.5281/zenodo.23945369"
+              }
+}

@@ -13,11 +13,12 @@ Release PDF: https://github.com/aruncmichael-alt/ocf-v1-beyond-vram/releases/dow
 1. **OpenCode + Strata first** — `01-opencode-discussion.md`, then `02-strata-discussion.md`
 2. **Hugging Face model discussion** — `03-huggingface-model-discussion.md` (ISTA-DASLab model community tab)
 3. **LocalLLaMA** — `04-localllama.md`
-4. **Show HN / r/Cursor last** — `05-show-hn.md`, then `06-cursor-subreddit.md`
+4. **Show HN / r/Cursor** — `05-show-hn.md`, then `06-cursor-subreddit.md`
+5. **LinkedIn carousel — last**, after every DOI-aware channel draft above: `07-linkedin-post.md` + `OCF-V1-LinkedIn-Carousel-3page.pdf`, staged per `08-linkedin-carousel-brief.md`
 
-**DO NOT spray all channels on Day 1.** Prefer waiting until a Zenodo DOI exists (see `docs/zenodo-setup.md`) so posts can cite a persistent identifier. If you must post before the DOI, link the GitHub release and add the DOI in a follow-up once minted.
+**DO NOT spray all channels on Day 1.** Keep the launch staggered, and make sure DOI-aware posts cite the Zenodo concept DOI before publishing the LinkedIn carousel.
 
-These files are drafts only. Do not auto-post if login/captcha blocks apply.
+These files are drafts only. The operator posts manually; there is no auto-post step. If login/captcha blocks apply, post by hand or stop.
 
 ## Intentionally omitted
 
